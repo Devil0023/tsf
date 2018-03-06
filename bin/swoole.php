@@ -134,6 +134,7 @@ if (CheckProcessExist()) { //如果存在 说明已经运行了 则通过unixsoc
         };
         //先处理单个 注意异常处理的情况
         $process = new swoole_process(function (swoole_process $worker) use ($name, $cmd, $phpStart) {//目前指支持一个
+            echo STARTBASEPATH . "/lib/Swoole/shell/start.php\r\n";
             $worker->exec($phpStart, array(STARTBASEPATH . "/lib/Swoole/shell/start.php", $cmd, $name));//拉起server
         }, false);
         $pid = $process->start();
